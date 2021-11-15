@@ -11,14 +11,14 @@ def chat(text, **kw):  #チャット用の関数（ここを書き換える）
   return 'ほ' * n
 
 # アイコンの指定
-BOT_ICON = 'https://2.bp.blogspot.com/-mRJKwyORJkQ/Wn1ZTOBrszI/AAAAAAABKKs/Bg5yjLL9RYwmfUM0pEkBA3Ky3ui0IOZWQCLcBGAs/s800/animal_smile_inu.png'
-YOUR_ICON = 'https://4.bp.blogspot.com/-SC6_6x7MQnc/Wn1ZUkdcPxI/AAAAAAABKK8/qqHVlc8E7lEGsEwJ_J8H6Gp9RvfhTX67wCLcBGAs/s800/animal_smile_neko.png'
+BOT_ICON = 'https://3.bp.blogspot.com/-W9Sv_9Nh-js/UQTg2Ozj0EI/AAAAAAAALek/15p6w3OVYxE/s1600/douzo_cat_right.png'
+YOUR_ICON = 'https://2.bp.blogspot.com/-AlqVbS9uCBs/V1z9TzHIoYI/AAAAAAAA7RA/iCoRAYbzPKcKnQKjmzQY3PCsPOMkl4MKQCLcB/s400/pet_cat_manpuku.png'
 
-def run_chat(chat = chat, start='占いするよ', **kw):
+def run_chat(chat = chat, start='あなたの今日の運勢をチェックしてみよう！', **kw):
 
   def display_bot(bot_text):
     with output.redirect_to_element('#output'):
-      bot_name = kw.get('bot_name', 'ボット')
+      bot_name = kw.get('bot_name', '占い猫')
       bot_icon = kw.get('bot_icon', BOT_ICON)
       display(IPython.display.HTML(f'''
       <div class="sb-box">
