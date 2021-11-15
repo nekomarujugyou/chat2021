@@ -239,7 +239,7 @@ def run_chat(chat = chat, start='占いするよ', **kw):
 # 'name', 'birthday', 'asking'
 frame = {}
 
-def myuranai(input_text):
+def uranai(input_text):
   global frame # 外部の状態を参照する
   if 'asking' in frame:  # asking から更新する
     frame[frame['asking']] = input_text
@@ -247,20 +247,35 @@ def myuranai(input_text):
 
   if 'name' not in frame:
     frame['asking'] = 'name' # 名前をたずねる  
-    return 'あなたの名前は？'
+    return 'まず、あなたの名前は？'
+  if 'name' in frame and 'birth' not in frame:
+    frame['asking'] = 'birth' # 誕生日をたずねる       
+    return 'あなたの好きな4桁の数字は？'
 
-  if 'name' in frame and 'birthday' not in frame:
-    frame['asking'] = 'birthday' # 誕生日をたずねる    
-    return 'あなたの誕生日は？'
 
-  if 'name' in frame and 'birthday' in frame:
+  if 'name' in frame and 'birth' in frame:
     # 占います
-    number = hash(frame['name']+frame['birthday']) % 10
-    if number > 5:
-      return 'あなたの運勢は大吉'
-    return 'あなたの運勢は吉'
+    number = hash(frame['name']+frame['birth']) % 10
+    if number==0:
+      return 'ミラクル！ウルトラハッピーだね！'
+    elif number==1:
+      return '今日のあなたはラッキー！幸せに過ごせそう！'
+    elif number== 2:
+      return '今日のあなたはまぁまぁラッキー！新しいことを始めてみて！'
+    elif number== 3:
+      return '今日のあなたは凄くラッキー！何もかも思うがまま！'
+    elif number==4:
+      return '今日のあなたは少しラッキー！猫の写真を撮ってみよう！'
+    elif number==5:
+      return '今日のあなたは普通だね！平和に過ごせそう！'
+    elif number==6:
+      return '今日のあなたは好きなことをして過ごしたらいいかも！'
+    elif number==7:
+      return '今日のあなたはちょっとアンラッキー！黄色の物を持ってみて！'
+    elif number==8:
+      return 'あちゃ～アンラッキー！もう寝た方がいい！'
+    return '今日一日お腹が空き過ぎちゃう！食べ過ぎ注意！'
 
   return output_text
 
-def start():
-  run_chat(chat=myuranai)    
+run_chat(chat=uranai)
